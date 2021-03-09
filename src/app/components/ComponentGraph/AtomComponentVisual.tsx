@@ -48,8 +48,6 @@ const AtomComponentVisual: React.FC<AtomComponentVisualProps> = ({
   const [selectorButtonClicked, setSelectorButtonClicked] = useState(false);
   const [bothButtonClicked, setBothButtonClicked] = useState(false);
   const [isDropDownItem, setIsDropDownItem] = useState(false);
-  const [resetColors, setResetColors] = useState(false);
-  const recoilNodes = useRef([]);
 
   useEffect(() => {
     height = document.querySelector('.Component').clientHeight;
@@ -264,7 +262,6 @@ const AtomComponentVisual: React.FC<AtomComponentVisualProps> = ({
         .select('circle.node')
         .attr('r', determineSize)
         .attr('fill', colorComponents)
-        // .attr('fill', resetColors ? updateColors : colorComponents)
         .attr('cursor', 'pointer')
         .style('stroke', borderColor)
         .style('stroke-width', 15);
@@ -420,7 +417,6 @@ const AtomComponentVisual: React.FC<AtomComponentVisualProps> = ({
 
           let hasAtom = false;
           let hasSelector = false;
-          recoilNodes.current = d.data.recoilNodes;
           for (let i = 0; i < d.data.recoilNodes.length; i++) {
             if (atoms.hasOwnProperty(d.data.recoilNodes[i])) {
               hasAtom = true;
@@ -467,52 +463,8 @@ const AtomComponentVisual: React.FC<AtomComponentVisualProps> = ({
     setAtomButtonClicked(false);
     setSelectorButtonClicked(false);
     setSelectedRecoilValue([]);
-    setResetColors(true);
     console.log('This is resetNodes');
   }
-
-  // const updateColors = () => {
-  //   // treeMap(root);
-
-  //   // let nodes = root.descendants();
-
-
-
-  //   console.log('updateColors happened');
-  //   let hasAtom = false;
-  //   let hasSelector = false;
-  //   console.log('atomList in updateColors: ', atomList);
-  //   console.log('selectorList in updateColors: ', selectorList);
-  //   const atsel = [...atomList, ...selectorList];
-
-  //   for (let i = 0; i < atsel.length; i++) {
-  //     const currentNode = atsel[i];
-  //     console.log('currentNode in updateColors: ', currentNode);
-
-  //     console.log('atoms in updateColors: ', atoms);
-  //     if (atoms.hasOwnProperty(currentNode)) {
-  //       hasAtom = true;
-  //     }
-  //     if (selectors.hasOwnProperty(currentNode)) {
-  //       hasSelector = true;
-  //     }
-  //   }
-
-  //   if (hasAtom && hasSelector) {
-  //     return 'springgreen';
-  //   }
-          
-  //   if (hasAtom) {
-  //     return '#9580ff';
-  //   }
-    
-  //   if (hasSelector) {
-  //     return '#ff80bf';
-  //   }
-      
-  //   return 'gray';
-  // }
-
 
   const atomButtonStyle = {
     color: '#9580ff',
